@@ -5,6 +5,8 @@ using UnityEngine;
 public class Aim : MonoBehaviour
 {
     [SerializeField] float speed = 3;
+    [SerializeField] float yawLimit = 50;
+    [SerializeField] float pitchLimit = 50;
 
     Vector3 rotation = Vector3.zero;
     Vector2 prevAxis = Vector2.zero;
@@ -29,8 +31,8 @@ public class Aim : MonoBehaviour
         rotation.x += axis.x * speed; // x
         rotation.y += axis.y * speed; // y
         
-        rotation.x = Mathf.Clamp(rotation.x, -20, 20); // x
-        rotation.y = Mathf.Clamp(rotation.y, -20, 20); // y
+        rotation.x = Mathf.Clamp(rotation.x, -pitchLimit, pitchLimit); // x
+        rotation.y = Mathf.Clamp(rotation.y, -yawLimit, yawLimit); // y
 
 
         Quaternion qyaw = Quaternion.AngleAxis(axis.y * speed, Vector3.up);
@@ -40,3 +42,5 @@ public class Aim : MonoBehaviour
 
     }
 }
+
+
